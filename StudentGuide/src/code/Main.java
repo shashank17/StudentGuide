@@ -64,7 +64,7 @@ public class Main {
 		courses.add(new Course("PH_SOC_DISP_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_SOC_DISP_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_SOC_DISP_3",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
-		courses.add(new Course("PH_CULT_FLG",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>("PH_TIER1_FLG"),new ArrayList<String>()));
+		courses.add(new Course("PH_CULT_FLG",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(Arrays.asList("PH_TIER1_FLG")),new ArrayList<String>()));
 		courses.add(new Course("PH_CULT_NONWEST",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_TIER3_INTEG",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 
