@@ -14,6 +14,30 @@ public class Main {
 	}
 	
 	private static ArrayList<Course> getCourses() {
+		ArrayList<Course> courses = new ArrayList<Course>();
+		
+		// adding major required courses
+		courses.add(new Course("CSC_104",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("CSC_111",3,OfferedSemester.EVERY_FALL,new ArrayList<String>(Arrays.asList("CSC_104")),new ArrayList<String>()));
+		courses.add(new Course("CSC_178",3,OfferedSemester.EVERY_SPRING,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("CSC_211",3,OfferedSemester.EVERY_SPRING,new ArrayList<String>(Arrays.asList("CSC_111")),new ArrayList<String>()));
+		courses.add(new Course("CSC_327",3,OfferedSemester.EVERY_FALL,new ArrayList<String>(Arrays.asList("ITY_177","CSC_178")),new ArrayList<String>(Arrays.asList("ITY_351"))));
+		courses.add(new Course("CSC_350",3,OfferedSemester.EVERY_FALL,new ArrayList<String>(Arrays.asList("CSC_104","CSC_201","ITY_177")),new ArrayList<String>(Arrays.asList("ITY_351"))));
+		courses.add(new Course("ITY_177",3,OfferedSemester.EVERY_FALL,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("ITY_181",3,OfferedSemester.EVERY_FALL,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("ITY_351",3,OfferedSemester.EVERY_FALL,new ArrayList<String>(Arrays.asList("CSC_104","CSC_178","ITY_177","ITY_181")),new ArrayList<String>(Arrays.asList("CSC_327"))));
+		courses.add(new Course("MAT_124",5,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		// adding major elective 1 place holders
+		courses.add(new Course("PH_MAJOR_ELECT1_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_MAJOR_ELECT1_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_MAJOR_ELECT2_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_MAJOR_ELECT2_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_MAJOR_ELECT3_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_MAJOR_ELECT3_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		
+		// adding gen ed required courses
+		courses.add(new Course("ENG_103",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		// adding gen ed elective courses
 		
 		return null;
 	}
@@ -118,6 +142,8 @@ public class Main {
 						new ArrayList<String>(Arrays.asList("PH_INTEG")))
 				);
 		
+		// adding major requirements
+		
 		requirements.add(
 				new StandardRequirement(ReqType.MAJOR_CSC, 
 						9, 
@@ -135,7 +161,7 @@ public class Main {
 		requirements.add(
 				new StandardRequirement(ReqType.MAJOR_CSC_ELECT2, 
 						2, 
-						6, 
+						0, 
 						new ArrayList<String>(Arrays.asList("PH_MAJOR_ELECT2_1","PH_MAJOR_ELECT2_2")))
 				);
 		

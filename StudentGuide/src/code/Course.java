@@ -9,8 +9,9 @@ public class Course {
 	private ArrayList<String> prereqs = new ArrayList<String>();
 	private ArrayList<String> coreqs = new ArrayList<String>();
 	
-	public Course(String courseId, OfferedSemester semesterOffered, ArrayList<String> prereqs, ArrayList<String> coreqs){
+	public Course(String courseId,int credits, OfferedSemester semesterOffered, ArrayList<String> prereqs, ArrayList<String> coreqs){
 		this.courseId = courseId;
+		this.credits = credits;
 		this.offeredSemester = semesterOffered;
 		this.prereqs = prereqs;
 		this.coreqs = coreqs;
