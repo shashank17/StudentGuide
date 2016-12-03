@@ -1,7 +1,7 @@
 package code;
 
 public enum ReqType {
-	GENED_TIER1,
+	GENED_PE,
 	GENED_TIER1_ENG,
 	GENED_WI,
 	GENED_UL_OUTSIDE_DIV,
