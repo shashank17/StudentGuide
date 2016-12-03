@@ -36,7 +36,7 @@ public class Main {
 //		courses.add(new Course("ITY_250",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 //		courses.add(new Course("ITY_234",1,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		
-		// adding major elective 1 place holders
+		// adding major electives' place holders
 		courses.add(new Course("PH_MAJOR_ELECT1_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_MAJOR_ELECT1_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_MAJOR_ELECT2_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
@@ -52,6 +52,8 @@ public class Main {
 		courses.add(new Course("MAT_114",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("WSM_101",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("LST_101",1,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		
+		//adding gen ed elecitves' placeholders
 		courses.add(new Course("PH_TIER1_FLG",4,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_SCI_INQ_LECT_LAB",4,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_SCI_INQ_ANY",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));

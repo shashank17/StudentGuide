@@ -5,9 +5,12 @@ import java.util.ArrayList;
 public class Scheduler {
 	
 	private ArrayList<Semester> semesters;
-	
-	public Scheduler(){
-		semesters = new ArrayList<Semester>();
+	private ArrayList<Requirement> requirements;
+	private ArrayList<Course> courses;
+	public Scheduler(ArrayList<Course> courses, ArrayList<Requirement> requirements){
+		this.courses = courses;
+		this.requirements = requirements;
+		this.semesters = new ArrayList<Semester>(7);
 	}
 	
 	public ArrayList<Semester> getSchedule(){
@@ -17,7 +20,31 @@ public class Scheduler {
 	}
 	
 	private void generateInitialSchedule(){
-		//randomly assign courses to semesters
+		// greedy assignment of courses to semesters
+		for(int j=0;j<requirements.size();j++){
+			for(int i=0;i<semesters.size();i++){
+				Semester semester = semesters.get(i);
+				while(semester.getTotalCredits()<20){
+					
+				}
+			}
+		}
+	}
+	
+	public ArrayList<Course> getAllCourses(){
+		ArrayList<Course> courses = new ArrayList<Course>();
+		for(Semester semester: semesters){
+			courses.addAll(semester.getCourses());
+		}
+		return courses;
+	}
+	
+	private Course getCourseById(String id){
+		for(Course course:courses){
+			if(course.getCourseId().equals(id))
+				return course;
+		}
+		return null;
 	}
 	
 	public void validateSchedule(){
