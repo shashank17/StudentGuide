@@ -8,11 +8,16 @@ import java.util.List;
 public class Main {
 	public static void main(String[] args){
 		ArrayList<Requirement> requirements= getRequirements();
-		
+		ArrayList<Course> courses = getCourses();
 		Scheduler scheduler = new Scheduler();
 		scheduler.getSchedule();
 	}
 	
+	private static ArrayList<Course> getCourses() {
+		
+		return null;
+	}
+
 	public static ArrayList<Requirement> getRequirements(){
 		ArrayList<Requirement> requirements=new ArrayList<Requirement>();
 		
@@ -91,6 +96,56 @@ public class Main {
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_SOC_DISP_1","PH_SOC_DISP_2","PH_SOC_DISP_3")))
 				);
+		
+		requirements.add(
+				new StandardRequirement(ReqType.GENED_TIER2_CULT_FLG, 
+						1, 
+						0, 
+						new ArrayList<String>(Arrays.asList("PH_CULT_FLG")))
+				);
+		
+		requirements.add(
+				new StandardRequirement(ReqType.GENED_TIER2_CULT_NONWEST, 
+						1, 
+						0, 
+						new ArrayList<String>(Arrays.asList("PH_CULT_NONWEST")))
+				);
+		
+		requirements.add(
+				new StandardRequirement(ReqType.GENED_TIER3_INTEG, 
+						1, 
+						0, 
+						new ArrayList<String>(Arrays.asList("PH_INTEG")))
+				);
+		
+		requirements.add(
+				new StandardRequirement(ReqType.MAJOR_CSC, 
+						9, 
+						0, 
+						new ArrayList<String>(Arrays.asList("CSC_104","CSC_111","CSC_178","CSC_211","CSC_327","CSC_350","ITY_177","ITY_181","ITY_351")))
+				);
+		
+		requirements.add(
+				new StandardRequirement(ReqType.MAJOR_CSC_ELECT1, 
+						2, 
+						0, 
+						new ArrayList<String>(Arrays.asList("PH_MAJOR_ELECT1_1","PH_MAJOR_ELECT1_2")))
+				);
+		
+		requirements.add(
+				new StandardRequirement(ReqType.MAJOR_CSC_ELECT2, 
+						2, 
+						6, 
+						new ArrayList<String>(Arrays.asList("PH_MAJOR_ELECT2_1","PH_MAJOR_ELECT2_2")))
+				);
+		
+		requirements.add(
+				new StandardRequirement(ReqType.MAJOR_CSC_ELECT3, 
+						2, 
+						0, 
+						new ArrayList<String>(Arrays.asList("PH_MAJOR_ELECT3_1","PH_MAJOR_ELECT3_2")))
+				);
+		
 		
 		return requirements;
 	}
