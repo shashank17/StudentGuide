@@ -1,21 +1,19 @@
 package code;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Main {
 	public static void main(String[] args){
 		ArrayList<Requirement> requirements= getRequirements();
 		ArrayList<Course> courses = getCourses();
-		Scheduler scheduler = new Scheduler();
+		Scheduler scheduler = new Scheduler(courses,requirements);
 		scheduler.getSchedule();
-		int sum = 0;
-		for(Course course:courses){
-			sum = sum+course.getCredits();
-		}
-		System.out.println("Total credits:"+sum);
+//		int sum = 0;
+//		for(Course course:courses){
+//			sum = sum+course.getCredits();
+//		}
+//		System.out.println("Total credits:"+sum);
 	}
 	
 	private static ArrayList<Course> getCourses() {
@@ -66,7 +64,7 @@ public class Main {
 		courses.add(new Course("PH_SOC_DISP_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_SOC_DISP_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_SOC_DISP_3",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
-		courses.add(new Course("PH_CULT_FLG",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>("PH_TIER1_FLG"),new ArrayList<String>()));
+		courses.add(new Course("PH_CULT_FLG",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(Arrays.asList("PH_TIER1_FLG")),new ArrayList<String>()));
 		courses.add(new Course("PH_CULT_NONWEST",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_TIER3_INTEG",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 
@@ -79,21 +77,21 @@ public class Main {
 		
 		//adding general graduation requirements
 		requirements.add(
-				new StandardRequirement(
+				new Requirement(
 						ReqType.GENED_PE,
 						1,
 						0,
 						new ArrayList<String>(Arrays.asList("PE"))
 						) );
 		requirements.add(
-				new StandardRequirement(
+				new Requirement(
 						ReqType.GENED_WI,
 						2,
 						0,
 						new ArrayList<String>(Arrays.asList("WI_1","WI_2"))
 						) );
 		requirements.add(
-				new StandardRequirement(
+				new Requirement(
 						ReqType.GENED_UL_OUTSIDE_DIV,
 						1,
 						0,
@@ -102,7 +100,7 @@ public class Main {
 		
 		// adding GENED Tier 1 requirements
 		requirements.add(
-				new StandardRequirement(
+				new Requirement(
 						ReqType.GENED_TIER1_WSM,
 						1,
 						0,
@@ -110,28 +108,28 @@ public class Main {
 						) );
 		
 		requirements.add(
-				new StandardRequirement(
+				new Requirement(
 						ReqType.GENED_TIER1_LST,
 						1,
 						0,
 						new ArrayList<String>(Arrays.asList("LST_101"))
 						) );
 		requirements.add(
-				new StandardRequirement(
+				new Requirement(
 						ReqType.GENED_TIER1_ENG,
 						1,
 						0,
 						new ArrayList<String>(Arrays.asList("ENG_103"))
 						) );
 		requirements.add(
-				new StandardRequirement(
+				new Requirement(
 						ReqType.GENED_TIER1_MAT,
 						1,
 						0,
 						new ArrayList<String>(Arrays.asList("MAT_114","MAT_124"))
 						) );
 		requirements.add(
-				new StandardRequirement(
+				new Requirement(
 						ReqType.GENED_TIER1_FLG,
 						1,
 						0,
@@ -141,7 +139,7 @@ public class Main {
 		
 		// adding GENED_TIER2 requirements	
 		requirements.add(
-				new StandardRequirement(
+				new Requirement(
 						ReqType.GENED_TIER2_SCI_INQ,
 						2,
 						0,
@@ -149,33 +147,33 @@ public class Main {
 						) );
 		
 		requirements.add(
-				new StandardRequirement(ReqType.GENED_TIER2_HIST_PERSP, 
+				new Requirement(ReqType.GENED_TIER2_HIST_PERSP, 
 						2, 
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_HIST_PERSP_1","PH_HIST_PRESP_2"))) // create placeholder course
 				);
 		requirements.add(
-				new StandardRequirement(ReqType.GENED_TIER2_FQV, 
+				new Requirement(ReqType.GENED_TIER2_FQV, 
 						1, 
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_FQV_1"))));
 		
 		requirements.add(
-				new StandardRequirement(ReqType.GENED_TIER2_ART_LIT, 
+				new Requirement(ReqType.GENED_TIER2_ART_LIT, 
 						2, 
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_ART_LIT","PH_ART_ANY")))
 				);
 		
 		requirements.add(
-				new StandardRequirement(ReqType.GENED_TIER2_SOC_DISP, 
+				new Requirement(ReqType.GENED_TIER2_SOC_DISP, 
 						3, 
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_SOC_DISP_1","PH_SOC_DISP_2","PH_SOC_DISP_3")))
 				);
 		
 		requirements.add(
-				new StandardRequirement(ReqType.GENED_TIER2_CULT_DIV_GLO_IND, 
+				new Requirement(ReqType.GENED_TIER2_CULT_DIV_GLO_IND, 
 						2, 
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_CULT_FLG","PH_CULT_NONWEST")))
@@ -183,7 +181,7 @@ public class Main {
 		
 		//adding tier 3 requirement
 		requirements.add(
-				new StandardRequirement(ReqType.GENED_TIER3_INTEG, 
+				new Requirement(ReqType.GENED_TIER3_INTEG, 
 						1, 
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_TIER3_INTEG")))
@@ -192,28 +190,28 @@ public class Main {
 		// adding major requirements
 		
 		requirements.add(
-				new StandardRequirement(ReqType.MAJOR_CSC, 
+				new Requirement(ReqType.MAJOR_CSC, 
 						10, 
 						0, 
 						new ArrayList<String>(Arrays.asList("CSC_104","CSC_111","CSC_178","CSC_211","CSC_327","CSC_350","ITY_177","ITY_181","ITY_351","MAT_124")))
 				);
 		
 		requirements.add(
-				new StandardRequirement(ReqType.MAJOR_CSC_ELECT1, 
+				new Requirement(ReqType.MAJOR_CSC_ELECT1, 
 						2, 
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_MAJOR_ELECT1_1","PH_MAJOR_ELECT1_2")))
 				);
 		
 		requirements.add(
-				new StandardRequirement(ReqType.MAJOR_CSC_ELECT2, 
+				new Requirement(ReqType.MAJOR_CSC_ELECT2, 
 						2, 
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_MAJOR_ELECT2_1","PH_MAJOR_ELECT2_2")))
 				);
 		
 		requirements.add(
-				new StandardRequirement(ReqType.MAJOR_CSC_ELECT3, 
+				new Requirement(ReqType.MAJOR_CSC_ELECT3, 
 						2, 
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_MAJOR_ELECT3_1","PH_MAJOR_ELECT3_2")))

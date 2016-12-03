@@ -10,7 +10,7 @@ public class Scheduler {
 	public Scheduler(ArrayList<Course> courses, ArrayList<Requirement> requirements){
 		this.courses = courses;
 		this.requirements = requirements;
-		this.semesters = new ArrayList<Semester>(7);
+		this.semesters = new ArrayList<Semester>();
 	}
 	
 	public ArrayList<Semester> getSchedule(){
@@ -21,6 +21,15 @@ public class Scheduler {
 	
 	private void generateInitialSchedule(){
 		// greedy assignment of courses to semesters
+		Semester semester = new Semester();
+		for(int i=0;i<requirements.size();i++){
+			Requirement r= requirements.get(i);
+			while(!r.isSatisfied(getAllCourses())){
+				if(r.getReqCourseCount() != 0){
+					semester.addCourse(course);
+				}
+			}
+		}
 		for(int j=0;j<requirements.size();j++){
 			for(int i=0;i<semesters.size();i++){
 				Semester semester = semesters.get(i);
