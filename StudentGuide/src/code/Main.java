@@ -11,10 +11,16 @@ public class Main {
 		ArrayList<Course> courses = getCourses();
 		Scheduler scheduler = new Scheduler();
 		scheduler.getSchedule();
+		int sum = 0;
+		for(Course course:courses){
+			sum = sum+course.getCredits();
+		}
+		System.out.println("Total credits:"+sum);
 	}
 	
 	private static ArrayList<Course> getCourses() {
 		ArrayList<Course> courses = new ArrayList<Course>();
+		
 		
 		// adding major required courses
 		courses.add(new Course("CSC_104",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
@@ -27,6 +33,9 @@ public class Main {
 		courses.add(new Course("ITY_181",3,OfferedSemester.EVERY_FALL,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("ITY_351",3,OfferedSemester.EVERY_FALL,new ArrayList<String>(Arrays.asList("CSC_104","CSC_178","ITY_177","ITY_181")),new ArrayList<String>(Arrays.asList("CSC_327"))));
 		courses.add(new Course("MAT_124",5,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+//		courses.add(new Course("ITY_250",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+//		courses.add(new Course("ITY_234",1,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		
 		// adding major elective 1 place holders
 		courses.add(new Course("PH_MAJOR_ELECT1_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		courses.add(new Course("PH_MAJOR_ELECT1_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
@@ -37,26 +46,63 @@ public class Main {
 		
 		// adding gen ed required courses
 		courses.add(new Course("ENG_103",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
-		// adding gen ed elective courses
+		courses.add(new Course("PE",1,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("WI_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("WI_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("MAT_114",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("WSM_101",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("LST_101",1,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_TIER1_FLG",4,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_SCI_INQ_LECT_LAB",4,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_SCI_INQ_ANY",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_HIST_PERSP_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_HIST_PRESP_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_HIST_PRESP_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_FQV_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_ART_LIT",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_ART_ANY",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_SOC_DISP_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_SOC_DISP_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_SOC_DISP_3",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_CULT_FLG",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_CULT_NONWEST",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_TIER3_INTEG",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_UL_OUTSIDE_DIV",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		
-		return null;
+		return courses;
 	}
 
 	public static ArrayList<Requirement> getRequirements(){
 		ArrayList<Requirement> requirements=new ArrayList<Requirement>();
 		
+		//did not add outside div 
+		
 		// adding GENED_TIER1 requirements
 		requirements.add(
 				new StandardRequirement(
 						ReqType.GENED_TIER1_ENG,
-						1,
+						2,
 						0,
-						new ArrayList<String>(Arrays.asList("ENG_103"))
+						new ArrayList<String>(Arrays.asList("ENG_103","PE"))
 						) );
 		
 		requirements.add(
 				new StandardRequirement(
 						ReqType.GENED_WI,
+						2,
+						0,
+						new ArrayList<String>(Arrays.asList("WI_1","WI_2"))
+						) );
+		requirements.add(
+				new StandardRequirement(
+						ReqType.GENED_UL_OUTSIDE_DIV,
+						1,
+						0,
+						new ArrayList<String>(Arrays.asList("PH_UL_OUTSIDE_DIV"))
+						) );
+		requirements.add(
+				new StandardRequirement(
+						ReqType.GENED_TIER2_HIST_PERSP,
 						2,
 						0,
 						new ArrayList<String>(Arrays.asList("WI_1","WI_2"))
@@ -72,9 +118,9 @@ public class Main {
 		requirements.add(
 				new StandardRequirement(
 						ReqType.GENED_TIER1_WSM,
-						3,
+						1,
 						0,
-						new ArrayList<String>(Arrays.asList("WSM_101","WSM_102","WSM_103"))
+						new ArrayList<String>(Arrays.asList("WSM_101"))
 						) );
 		
 		requirements.add(
@@ -84,6 +130,14 @@ public class Main {
 						0,
 						new ArrayList<String>(Arrays.asList("LST_101"))
 						) );
+		requirements.add(
+				new StandardRequirement(
+						ReqType.GENED_TIER1_FLG,
+						1,
+						0,
+						new ArrayList<String>(Arrays.asList("PH_TIER1_FLG"))
+						) );
+		
 		
 		// adding GENED_TIER2 requirements
 		
@@ -122,33 +176,26 @@ public class Main {
 				);
 		
 		requirements.add(
-				new StandardRequirement(ReqType.GENED_TIER2_CULT_FLG, 
-						1, 
+				new StandardRequirement(ReqType.GENED_TIER2_CULT_DIV_GLO_IND, 
+						2, 
 						0, 
-						new ArrayList<String>(Arrays.asList("PH_CULT_FLG")))
-				);
-		
-		requirements.add(
-				new StandardRequirement(ReqType.GENED_TIER2_CULT_NONWEST, 
-						1, 
-						0, 
-						new ArrayList<String>(Arrays.asList("PH_CULT_NONWEST")))
+						new ArrayList<String>(Arrays.asList("PH_CULT_FLG","PH_CULT_NONWEST")))
 				);
 		
 		requirements.add(
 				new StandardRequirement(ReqType.GENED_TIER3_INTEG, 
 						1, 
 						0, 
-						new ArrayList<String>(Arrays.asList("PH_INTEG")))
+						new ArrayList<String>(Arrays.asList("PH_TIER3_INTEG")))
 				);
 		
 		// adding major requirements
 		
 		requirements.add(
 				new StandardRequirement(ReqType.MAJOR_CSC, 
-						9, 
+						11, 
 						0, 
-						new ArrayList<String>(Arrays.asList("CSC_104","CSC_111","CSC_178","CSC_211","CSC_327","CSC_350","ITY_177","ITY_181","ITY_351")))
+						new ArrayList<String>(Arrays.asList("CSC_104","CSC_111","CSC_178","CSC_211","CSC_327","CSC_350","ITY_177","ITY_181","ITY_351","ITY_250","ITY_234")))
 				);
 		
 		requirements.add(
