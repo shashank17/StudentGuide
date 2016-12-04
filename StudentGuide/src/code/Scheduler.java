@@ -76,14 +76,14 @@ public class Scheduler {
 		return courses;
 	}
 	
-	public ArrayList<String> getCommonCourses(ArrayList<String> requirementCourseIds, ArrayList<String> selectedCourseIds){
-		ArrayList<String> courseIds = new ArrayList<String>();
-		for(String courseId : selectedCourseIds){
-			if(requirementCourseIds.contains(courseId))
-				courseIds.add(courseId);
-		}
-		return courseIds;
-	}
+//	public ArrayList<String> getCommonCourses(ArrayList<String> requirementCourseIds, ArrayList<String> selectedCourseIds){
+//		ArrayList<String> courseIds = new ArrayList<String>();
+//		for(String courseId : selectedCourseIds){
+//			if(requirementCourseIds.contains(courseId))
+//				courseIds.add(courseId);
+//		}
+//		return courseIds;
+//	}
 	
 //	public ArrayList<String> getAllCourseIds(){
 //		ArrayList<String> courseIds = new ArrayList<String>();
@@ -113,11 +113,37 @@ public class Scheduler {
 				e.printStackTrace();
 			}
 		}
+		// randomly choose two semester and exchange 2 courses from those semesters
+		int rand1 = (int) (Math.random()*copy.size());
+		int rand2 = rand1;
+		while(rand1 == rand2)
+			rand2 = (int) (Math.random()*copy.size());
+		Semester semester1 =  copy.get(rand1);
+		Semester semester2 = copy.get(rand2);
+		rand1 = (int)(Math.random()*semester1.getCourses().size());
+		rand2 = (int)(Math.random()*semester2.getCourses().size());
+		Course course1 = semester1.removeCourse(rand1);
+		Course course2 = semester2.removeCourse(rand2);
+		
+		// randomly add courses to semester1 or semester 2 or exchange courses
+		int rand = (int)(Math.random()*2);
+		
+		if(rand == 0){
+			semester1.addCourse(course1);
+			semester1.addCourse(course2);
+		}else if(rand == 1){
+			semester2.addCourse(course1);
+			semester2.addCourse(course2);
+		}else{
+			semester2.addCourse(course1);
+			semester1.addCourse(course2);
+		}
 		return copy;
 	}
 	
 	public void validateSchedule(){
 		// use simulated annealing to make the schedule valid
-		
+		ArrayList<Semester> neighbor = generateNeighbor();
+		// calculate the score of the neighbor, reject or accept based on the score
 	}
 }

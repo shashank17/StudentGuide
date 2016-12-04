@@ -11,9 +11,15 @@ public class Semester implements Cloneable {
 		totalCredits += course.getCredits();
 	}
 	
-	public Course removeCourse(String courseId){
-//		Course course = courses.remove(o)
-		return null;
+//	public Course removeCourse(String courseId){
+////		Course course = courses.remove(o)
+//		return null;
+//	}
+	
+	public Course removeCourse(int index){
+		Course course = courses.remove(index);
+		totalCredits -= course.getCredits();
+		return course;
 	}
 	
 	public boolean isFull(){
