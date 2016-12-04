@@ -19,7 +19,7 @@ public class ConstraintChecker {
 		return this.constraintsFullfilled;
 	}
 	
-	public int runAll(ArrayList<Semester> semester, Course course) {
+	public int runAll(ArrayList<Semester> semester) {
 		this.constraintsTotal = 0;
 		this.constraintsFullfilled = 0;
 		
@@ -31,7 +31,7 @@ public class ConstraintChecker {
 		this.freshman(semester);
 		this.upperClass(semester);
 		this.upperClassFall(semester);
-		this.pre_co_req(semester, course);
+		this.pre_co_req(semester);
 			
 		return this.constraintsFullfilled;
 	}
@@ -112,7 +112,46 @@ public class ConstraintChecker {
 		}
 	}
 	//check pre-requisites and co-requisites for other courses
-	public void pre_co_req(ArrayList<Semester>semester, Course course){
+	public void pre_co_req(ArrayList<Semester>semester){
+		//need to check every course in every semester
+		//use index for the semester so we can know which semesters to look at for prereqs and coreqs
+		for (int i=0; i < semester.size(); i++ ){   
+			Semester s = semester.get(i);
+			//iterate through each course in the semester
+			for (Course c: s.getCourses()){
+				//get the prereqs and coreqs for this course
+				ArrayList<String> prereqs = c.getPrereqs();
+				ArrayList<String> coreqs = c.getCoreqs();
+				//in our simplified version, we do not have OR requirements - only AND
+				//check prereqs first, if there are any
+				if (!prereqs.isEmpty()){
+					//prereqs is a list of strings that are course IDs
+					for (String p: prereqs){
+						constraintsTotal++; //we have a prereq to count as a constraint in the total
+						boolean found = false;
+						//for each pre-req, see if a semester contains it
+						for (int j = 0; j < i; j++){
+							Semester earlierSemester = semester.get(j);
+							if (earlierSemester.containsClass(p)) {
+								constraintsFullfilled++;
+								break; //break out of Semester loop and look at next prereq
+							}
+						}
+					}
+				}
+				//then check coreqs, if there are any
+				if (!coreqs.isEmpty()){
+					for (String cr : coreqs) {
+						constraintsTotal++; //we have a coreq to count as a constraint in the total
+						if(s.containsClass(cr))
+						{
+							constraintsFullfilled++; 
+						}
+					}
+					
+				}
+			}
+		}
 		
 	}
 }
