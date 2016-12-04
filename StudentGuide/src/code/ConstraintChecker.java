@@ -3,6 +3,31 @@ package code;
 import java.util.ArrayList;
 
 public class ConstraintChecker {
+	
+	private int constraintsTotal = 0;
+	
+	public ConstraintChecker(){
+		this.constraintsTotal = 0; //will need to adjust this after we have all the constraints defined
+	}
+	
+	public int getConstraintsTotal() {
+		return constraintsTotal;
+	}
+	
+	public int runAll(ArrayList<Semester> semester) {
+		int constraintsFullfilled = 0;
+		boolean result = false;
+		
+		if (this.semesterHours(semester)) {
+			constraintsFullfilled++;
+		}
+		if (this.creditHours(semester)) {
+			constraintsFullfilled++;
+		}
+		
+		
+		return constraintsFullfilled;
+	}
 
 	//method that will make sure there are between 12 and 19 credit hours
 	public boolean semesterHours(ArrayList<Semester> semester){
