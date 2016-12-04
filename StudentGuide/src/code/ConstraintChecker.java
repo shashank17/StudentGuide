@@ -64,7 +64,7 @@ public class ConstraintChecker {
 	}
 	//Req GENED_TIER1_MAT - first or second semester
 	//Req GENED_TIER1_FLG - first or second semester
-	public boolean freshman(ArrayList<Semester>semester){
+	public void freshman(ArrayList<Semester>semester){
 		for(int i=0; i<2; i++)
 			
 		return true;
