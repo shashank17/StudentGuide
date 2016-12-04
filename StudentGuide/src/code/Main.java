@@ -8,7 +8,18 @@ public class Main {
 		ArrayList<Requirement> requirements= getRequirements();
 		ArrayList<Course> courses = getCourses();
 		Scheduler scheduler = new Scheduler(courses,requirements);
-		scheduler.getSchedule();
+		ArrayList<Semester> semesters = scheduler.getSchedule();
+		for(int i=0;i<semesters.size();i++){
+			System.out.println("***** Semester "+(i+1)+" *****");
+			Semester s = semesters.get(i);
+			ArrayList<Course> sem_courses = s.getCourses();
+			for(int j=0;j<sem_courses.size();j++){
+				Course  course = sem_courses.get(j);
+				System.out.println(course.getCourseId());
+			}
+			System.out.println("Total credits "+s.getTotalCredits());
+			System.out.println("================");
+		}
 //		int sum = 0;
 //		for(Course course:courses){
 //			sum = sum+course.getCredits();

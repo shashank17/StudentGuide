@@ -32,7 +32,7 @@ public class Requirement {
 		return courseIds;
 	}
 	
-	public boolean isSatisfied(ArrayList<Course> courses) {
+	public boolean isSatisfied(ArrayList<String> selectedCourseIds) {
 		// find the intersection of chosen courses and the courses available for the requirement
 		// see if the intersection satisfies req course count or req credit count
 		

@@ -1,9 +1,11 @@
 package code;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.commons.collections4.ListUtils;
 public class Scheduler {
-	
+
 	private ArrayList<Semester> semesters;
 	private ArrayList<Requirement> requirements;
 	private ArrayList<Course> courses;
@@ -33,23 +35,37 @@ public class Scheduler {
 						//add course, update semester hours and total hours
 					//else move to next semester
 		// greedy assignment of courses to semesters
+		ArrayList<String> selectedCourseIds = new ArrayList<String>();
 		Semester semester = new Semester();
+		
+		semester.addCourse(getCourseById("LST_101"));
+		semester.addCourse(getCourseById("WSM_101"));
+		selectedCourseIds.add("LST_101");
+		selectedCourseIds.add("WSM_101");
+		
 		for(int i=0;i<requirements.size();i++){
-			Requirement r= requirements.get(i);
-			while(!r.isSatisfied(getAllCourses())){
-				if(r.getReqCourseCount() != 0){
-					semester.addCourse(course);
-				}
-			}
-		}
-		for(int j=0;j<requirements.size();j++){
-			for(int i=0;i<semesters.size();i++){
-				Semester semester = semesters.get(i);
-				while(semester.getTotalCredits()<20){
+			Requirement r = requirements.get(i);
+			if(r.getReqCourseCount() > 0){
+				
+				List<String> commonCourses = ListUtils.intersection(r.getCourseIds(), selectedCourseIds);
+				
+				if(commonCourses.size() < r.getReqCourseCount()){
 					
+					List<String> difference = ListUtils.subtract(r.getCourseIds(), commonCourses);
+					
+					for(int j= 0;j<r.getReqCourseCount() - commonCourses.size();j++ ){
+						Course course = getCourseById(difference.get(j));
+						if(semester.getTotalCredits()+course.getCredits() > 19){
+							semesters.add(semester);
+							semester = new Semester();
+						}
+						semester.addCourse(course);
+						selectedCourseIds.add(course.getCourseId());
+					}
 				}
 			}
 		}
+		semesters.add(semester);
 	}
 	
 	public ArrayList<Course> getAllCourses(){
@@ -59,6 +75,25 @@ public class Scheduler {
 		}
 		return courses;
 	}
+	
+	public ArrayList<String> getCommonCourses(ArrayList<String> requirementCourseIds, ArrayList<String> selectedCourseIds){
+		ArrayList<String> courseIds = new ArrayList<String>();
+		for(String courseId : selectedCourseIds){
+			if(requirementCourseIds.contains(courseId))
+				courseIds.add(courseId);
+		}
+		return courseIds;
+	}
+	
+//	public ArrayList<String> getAllCourseIds(){
+//		ArrayList<String> courseIds = new ArrayList<String>();
+//		for(Semester semester: semesters){
+//			for(Course course: semester.getCourses())
+//				courseIds.add(course.getCourseId());
+//		}
+//		return courseIds;
+//	}
+	
 	
 	private Course getCourseById(String id){
 		for(Course course:courses){
