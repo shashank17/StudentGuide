@@ -49,12 +49,17 @@ public class ConstraintChecker {
 	//Req GENED_TIER1_WSM - first semester
 	//Req GENED_TIER1_LST - first semester
 	public boolean firstSemester(Semester semester){
-		
+		if(!semester.getCourses().contains("LST_101"))
+			return false;
+		else if (!semester.getCourses().contains("WSM_101"))
+			return false;
 		return true;
 	}
 	//Req GENED_TIER1_MAT - first or second semester
 	//Req GENED_TIER1_FLG - first or second semester
 	public boolean freshman(ArrayList<Semester>semester){
+		for(int i=0; i<2; i++)
+			
 		return true;
 	}
 	//Req GENED_UL_OUTSIDE_DIV - because its an upper level, probably junior or senior year
