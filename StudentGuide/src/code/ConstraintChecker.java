@@ -5,27 +5,34 @@ import java.util.ArrayList;
 public class ConstraintChecker {
 	
 	private int constraintsTotal = 0;
+	private int constraintsFullfilled = 0;
 	
 	public ConstraintChecker(){
-		this.constraintsTotal = 0; //will need to adjust this after we have all the constraints defined
+		this.constraintsTotal = 0; 
+		this.constraintsFullfilled = 0;
 	}
 	
 	public int getConstraintsTotal() {
 		return constraintsTotal;
 	}
+	public int getConstraintsFullfilled() {
+		return constraintsFullfilled;
+	}
 	
-	public int runAll(ArrayList<Semester> semester) {
+	public int runAll(ArrayList<Semester> semester, Course course) {
+		int constraintsTotal = 0;
 		int constraintsFullfilled = 0;
-		boolean result = false;
 		
-		if (this.semesterHours(semester)) {
-			constraintsFullfilled++;
-		}
-		if (this.creditHours(semester)) {
-			constraintsFullfilled++;
-		}
-		
-		
+		//each method adds to constraintsTotal and constraintsFullfilled as appropriate
+		//constraintsTotal may change because we may have different courses chosen, with different numbers of prereqs and coreqs
+		this.semesterHours(semester) ;
+		this.creditHours(semester) ;
+		this.firstSemester(semester.get(1));
+		this.freshman(semester);
+		this.upperClass(semester);
+		this.upperClassFall(semester);
+		this.pre_co_req(semester, course);
+			
 		return constraintsFullfilled;
 	}
 
