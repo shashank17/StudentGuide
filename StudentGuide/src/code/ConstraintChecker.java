@@ -65,9 +65,9 @@ public class ConstraintChecker {
 	//Req GENED_TIER1_MAT - first or second semester
 	//Req GENED_TIER1_FLG - first or second semester
 	public void freshman(ArrayList<Semester>semester){
-		for(int i=0; i<2; i++)
+//		for(int i=0; i<2; i++)
 			
-		return true;
+//		return true;
 	}
 	//Req GENED_UL_OUTSIDE_DIV - because its an upper level, probably junior or senior year
 	//Req GENED_TIER3_INTEG - probably senior year, maybe junior
