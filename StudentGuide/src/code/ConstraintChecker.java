@@ -65,21 +65,36 @@ public class ConstraintChecker {
 	//Req GENED_TIER1_MAT - first or second semester
 	//Req GENED_TIER1_FLG - first or second semester
 	public void freshman(ArrayList<Semester>semester){
-		for(int i=0; i<2; i++)
-			
-		return true;
+		int i = 0;
+		for(Semester s:semester){
+			//check to see gened courses within freshman year are taken
+			if(s.getCourses().contains("MAT_114") && i < 4)
+				constraintsFullfilled++;
+			if(s.getCourses().contains("MAT_124") && i < 4)
+				constraintsFullfilled++;
+			if(s.getCourses().contains("PH_TIER1_FLG") && i < 4)
+				constraintsFullfilled++;
+			i++;
+			if(i >= 4)
+				break;
+		}
 	}
 	//Req GENED_UL_OUTSIDE_DIV - because its an upper level, probably junior or senior year
 	//Req GENED_TIER3_INTEG - probably senior year, maybe junior
-	public boolean upperClass(ArrayList<Semester>semester){
-		return true;
+	public void upperClass(ArrayList<Semester>semester){
+		int i = 0;
+		for(Semester s: semester){
+			if(i < )
+				
+			i++;
+		}
 	}
 	//Courses CSC_327, CSC_350, ITY_351, PH_MAJOR_ELECT1_2 usually taken together. Fall semester, junior or senior year.
-	public boolean upperClassFall(ArrayList<Semester>semester){
-		return true;
+	public void upperClassFall(ArrayList<Semester>semester){
+		
 	}
 	//check pre-requisites and co-requisites for other courses
-	public boolean pre_co_req(ArrayList<Semester>semester, Course course){
-		return true;
+	public void pre_co_req(ArrayList<Semester>semester, Course course){
+		
 	}
 }
