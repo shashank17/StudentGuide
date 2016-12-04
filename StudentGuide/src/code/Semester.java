@@ -42,5 +42,12 @@ public class Semester implements Cloneable {
 		}
 		return semester;
 	}
+	public boolean containsClass(String course){
+		for(Course c:this.courses){
+			if(c.getClass().equals(course))
+				return true; 
+		}
+		return false;
+	}
 
 }

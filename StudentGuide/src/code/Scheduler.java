@@ -9,6 +9,7 @@ public class Scheduler {
 	private ArrayList<Semester> semesters;
 	private ArrayList<Requirement> requirements;
 	private ArrayList<Course> courses;
+	
 	public Scheduler(ArrayList<Course> courses, ArrayList<Requirement> requirements){
 		this.courses = courses;
 		this.requirements = requirements;

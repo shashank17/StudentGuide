@@ -57,9 +57,9 @@ public class ConstraintChecker {
 	//Req GENED_TIER1_LST - first semester
 	public void firstSemester(Semester semester){
 		this.constraintsTotal = constraintsTotal + 2; //two constraints for this method
-		if(!semester.getCourses().contains("LST_101"))
+		if(!semester.containsClass("LST_101"))
 			this.constraintsFullfilled++;
-		if (!semester.getCourses().contains("WSM_101")) //don't use else if - each requirement is separate
+		if (!semester.containsClass("WSM_101")) //don't use else if - each requirement is separate
 			this.constraintsFullfilled++;
 	}
 	//Req GENED_TIER1_MAT - first or second semester
@@ -69,11 +69,11 @@ public class ConstraintChecker {
 		this.constraintsTotal = constraintsTotal + 2; //two constraints for this method
 		for(Semester s:semester){
 			//check to see gened courses within freshman year are taken
-			if(s.getCourses().contains("MAT_114") && i < 4)
+			if(s.containsClass("MAT_114") && i < 4)
 				constraintsFullfilled++;
-			if(s.getCourses().contains("MAT_124") && i < 4)
+			if(s.containsClass("MAT_124") && i < 4)
 				constraintsFullfilled++;
-			if(s.getCourses().contains("PH_TIER1_FLG") && i < 4)
+			if(s.containsClass("PH_TIER1_FLG") && i < 4)
 				constraintsFullfilled++;
 			i++;
 			if(i >= 4)
@@ -86,9 +86,9 @@ public class ConstraintChecker {
 		int i = 0;
 		for(Semester s: semester){
 			if(i > 3)
-				if(s.getCourses().contains("PH_TIER3_INTEG"))
+				if(s.containsClass("PH_TIER3_INTEG"))
 					constraintsFullfilled++;
-				if(s.getCourses().contains("PH_UL_OUTSIDE_DIV"))
+				if(s.containsClass("PH_UL_OUTSIDE_DIV"))
 					constraintsFullfilled++;
 			i++;
 		}
@@ -98,13 +98,13 @@ public class ConstraintChecker {
 		int i = 0;
 		for(Semester s: semester){
 			if(i > 3)
-				if(s.getCourses().contains("CSC_327") && (i%2) == 0)
+				if(s.containsClass("CSC_327") && (i%2) == 0)
 					constraintsFullfilled++;
-				if(s.getCourses().contains("CSC_350") && (i%2) == 0)
+				if(s.containsClass("CSC_350") && (i%2) == 0)
 					constraintsFullfilled++;
-				if(s.getCourses().contains("ITY_351") && (i%2) == 0)
+				if(s.containsClass("ITY_351") && (i%2) == 0)
 					constraintsFullfilled++;
-				if(s.getCourses().contains("PH_MAJOR_ELECT1_2") && (i%2) == 0)
+				if(s.containsClass("PH_MAJOR_ELECT1_2") && (i%2) == 0)
 					constraintsFullfilled++;
 			i++;
 		}
