@@ -103,7 +103,21 @@ public class Scheduler {
 		return null;
 	}
 	
+	public ArrayList<Semester> generateNeighbor(){
+		ArrayList<Semester> copy = new ArrayList<Semester>();
+		for(Semester semester:this.semesters){
+			try {
+				copy.add((Semester) semester.clone());
+			} catch (CloneNotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return copy;
+	}
+	
 	public void validateSchedule(){
 		// use simulated annealing to make the schedule valid
+		
 	}
 }
