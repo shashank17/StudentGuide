@@ -13,15 +13,15 @@ public class ConstraintChecker {
 	}
 	
 	public int getConstraintsTotal() {
-		return constraintsTotal;
+		return this.constraintsTotal;
 	}
 	public int getConstraintsFullfilled() {
-		return constraintsFullfilled;
+		return this.constraintsFullfilled;
 	}
 	
 	public int runAll(ArrayList<Semester> semester, Course course) {
-		int constraintsTotal = 0;
-		int constraintsFullfilled = 0;
+		 this.constraintsTotal = 0;
+		 this.constraintsFullfilled = 0;
 		
 		//each method adds to constraintsTotal and constraintsFullfilled as appropriate
 		//constraintsTotal may change because we may have different courses chosen, with different numbers of prereqs and coreqs
@@ -33,7 +33,7 @@ public class ConstraintChecker {
 		this.upperClassFall(semester);
 		this.pre_co_req(semester, course);
 			
-		return constraintsFullfilled;
+		return this.constraintsFullfilled;
 	}
 
 	//method that will make sure there are between 12 and 19 credit hours
