@@ -95,7 +95,19 @@ public class ConstraintChecker {
 	}
 	//Courses CSC_327, CSC_350, ITY_351, PH_MAJOR_ELECT1_2 usually taken together. Fall semester, junior or senior year.
 	public void upperClassFall(ArrayList<Semester>semester){
-		
+		int i = 0;
+		for(Semester s: semester){
+			if(i > 3)
+				if(s.getCourses().contains("CSC_327") && (i%2) == 0)
+					constraintsFullfilled++;
+				if(s.getCourses().contains("CSC_350") && (i%2) == 0)
+					constraintsFullfilled++;
+				if(s.getCourses().contains("ITY_351") && (i%2) == 0)
+					constraintsFullfilled++;
+				if(s.getCourses().contains("PH_MAJOR_ELECT1_2") && (i%2) == 0)
+					constraintsFullfilled++;
+			i++;
+		}
 	}
 	//check pre-requisites and co-requisites for other courses
 	public void pre_co_req(ArrayList<Semester>semester, Course course){
