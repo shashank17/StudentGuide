@@ -146,5 +146,6 @@ public class Scheduler {
 		// use simulated annealing to make the schedule valid
 		ArrayList<Semester> neighbor = generateNeighbor();
 		// calculate the score of the neighbor, reject or accept based on the score
+		//score = 
 	}
 }
