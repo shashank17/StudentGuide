@@ -13,15 +13,15 @@ public class ConstraintChecker {
 	}
 	
 	public int getConstraintsTotal() {
-		return constraintsTotal;
+		return this.constraintsTotal;
 	}
 	public int getConstraintsFullfilled() {
-		return constraintsFullfilled;
+		return this.constraintsFullfilled;
 	}
 	
 	public int runAll(ArrayList<Semester> semester, Course course) {
-		int constraintsTotal = 0;
-		int constraintsFullfilled = 0;
+		this.constraintsTotal = 0;
+		this.constraintsFullfilled = 0;
 		
 		//each method adds to constraintsTotal and constraintsFullfilled as appropriate
 		//constraintsTotal may change because we may have different courses chosen, with different numbers of prereqs and coreqs
@@ -33,7 +33,7 @@ public class ConstraintChecker {
 		this.upperClassFall(semester);
 		this.pre_co_req(semester, course);
 			
-		return constraintsFullfilled;
+		return this.constraintsFullfilled;
 	}
 
 	//method that will make sure there are between 12 and 19 credit hours
@@ -84,6 +84,7 @@ public class ConstraintChecker {
 	//Req GENED_TIER3_INTEG - probably senior year, maybe junior
 	public void upperClass(ArrayList<Semester>semester){
 		int i = 0;
+		this.constraintsTotal = constraintsTotal + 2; //two constraints for this method
 		for(Semester s: semester){
 			if(i > 3)
 				if(s.getCourses().contains("PH_TIER3_INTEG"))
@@ -96,6 +97,7 @@ public class ConstraintChecker {
 	//Courses CSC_327, CSC_350, ITY_351, PH_MAJOR_ELECT1_2 usually taken together. Fall semester, junior or senior year.
 	public void upperClassFall(ArrayList<Semester>semester){
 		int i = 0;
+		this.constraintsTotal = constraintsTotal + 4; //four constraints for this method
 		for(Semester s: semester){
 			if(i > 3)
 				if(s.getCourses().contains("CSC_327") && (i%2) == 0)
