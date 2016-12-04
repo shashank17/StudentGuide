@@ -27,7 +27,7 @@ public class ConstraintChecker {
 		//constraintsTotal may change because we may have different courses chosen, with different numbers of prereqs and coreqs
 		this.semesterHours(semester) ;
 		this.creditHours(semester) ;
-		this.firstSemester(semester.get(1));
+		this.firstSemester(semester.get(0)); //pass in first semester only
 		this.freshman(semester);
 		this.upperClass(semester);
 		this.upperClassFall(semester);
@@ -37,35 +37,36 @@ public class ConstraintChecker {
 	}
 
 	//method that will make sure there are between 12 and 19 credit hours
-	public boolean semesterHours(ArrayList<Semester> semester){
+	public void semesterHours(ArrayList<Semester> semester){
 		for(Semester s:semester){
+			this.constraintsTotal++; //one constraint per semester
 			if(s.getTotalCredits() > 19 || s.getTotalCredits() < 12)
-				return false;
+				this.constraintsFullfilled++;	
 		}
-		return true;
 	}
 	//122 credits or more total
-	public boolean creditHours(ArrayList<Semester>semester){
+	public void creditHours(ArrayList<Semester>semester){
 		int total = 0;
-		for(Semester s:semester)
+		this.constraintsTotal++; //only one constraint for this method (total numbers of credit)
+		for(Semester s:semester) 
 			total += s.getTotalCredits();
 		if(total < 122)
-			return false;
-		return true;
+			this.constraintsFullfilled++;
 	}
 	//Req GENED_TIER1_WSM - first semester
 	//Req GENED_TIER1_LST - first semester
-	public boolean firstSemester(Semester semester){
+	public void firstSemester(Semester semester){
+		this.constraintsTotal = constraintsTotal + 2; //two constraints for this method
 		if(!semester.getCourses().contains("LST_101"))
-			return false;
-		else if (!semester.getCourses().contains("WSM_101"))
-			return false;
-		return true;
+			this.constraintsFullfilled++;
+		if (!semester.getCourses().contains("WSM_101")) //don't use else if - each requirement is separate
+			this.constraintsFullfilled++;
 	}
 	//Req GENED_TIER1_MAT - first or second semester
 	//Req GENED_TIER1_FLG - first or second semester
 	public void freshman(ArrayList<Semester>semester){
 		int i = 0;
+		this.constraintsTotal = constraintsTotal + 2; //two constraints for this method
 		for(Semester s:semester){
 			//check to see gened courses within freshman year are taken
 			if(s.getCourses().contains("MAT_114") && i < 4)
