@@ -84,8 +84,11 @@ public class ConstraintChecker {
 	public void upperClass(ArrayList<Semester>semester){
 		int i = 0;
 		for(Semester s: semester){
-			if(i < )
-				
+			if(i > 3)
+				if(s.getCourses().contains("PH_TIER3_INTEG"))
+					constraintsFullfilled++;
+				if(s.getCourses().contains("PH_UL_OUTSIDE_DIV"))
+					constraintsFullfilled++;
 			i++;
 		}
 	}
