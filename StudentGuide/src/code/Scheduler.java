@@ -9,6 +9,8 @@ public class Scheduler {
 	private ArrayList<Semester> semesters;
 	private ArrayList<Requirement> requirements;
 	private ArrayList<Course> courses;
+	private int MAX = 1000;
+	private double TEMP = 500;
 	
 	public Scheduler(ArrayList<Course> courses, ArrayList<Requirement> requirements){
 		this.courses = courses;
@@ -96,37 +98,60 @@ public class Scheduler {
 			}
 		}
 		// randomly choose two semester and exchange 2 courses from those semesters
-		int rand1 = (int) (Math.random()*copy.size());
+		int rand1 = (int) (Math.random()*(copy.size()-1));
 		int rand2 = rand1;
 		while(rand1 == rand2)
-			rand2 = (int) (Math.random()*copy.size());
+			rand2 = (int) (Math.random()*(copy.size()-1));
 		Semester semester1 =  copy.get(rand1);
 		Semester semester2 = copy.get(rand2);
-		rand1 = (int)(Math.random()*semester1.getCourses().size());
-		rand2 = (int)(Math.random()*semester2.getCourses().size());
+		rand1 = (int)(Math.random()*(semester1.getCourses().size()-1));
+		rand2 = (int)(Math.random()*(semester2.getCourses().size()-1));
 		Course course1 = semester1.removeCourse(rand1);
 		Course course2 = semester2.removeCourse(rand2);
 		
 		// randomly add courses to semester1 or semester 2 or exchange courses
 		int rand = (int)(Math.random()*2);
 		
-		if(rand == 0){
-			semester1.addCourse(course1);
-			semester1.addCourse(course2);
-		}else if(rand == 1){
+		//if(rand == 0){
+			//semester1.addCourse(course1);
+			//semester1.addCourse(course2);
+		//}else if(rand == 1){
+			//semester2.addCourse(course1);
+			//semester2.addCourse(course2);
+		//}else{
 			semester2.addCourse(course1);
-			semester2.addCourse(course2);
-		}else{
-			semester2.addCourse(course1);
 			semester1.addCourse(course2);
-		}
+		//}
 		return copy;
 	}
 	
 	public void validateSchedule(){
 		// use simulated annealing to make the schedule valid
-		ArrayList<Semester> neighbor = generateNeighbor();
+		ArrayList<Semester> neighbor;
+		Semester n;
+		ConstraintChecker check = new ConstraintChecker();
 		// calculate the score of the neighbor, reject or accept based on the score
-		//score = 
+		//pseudocode
+		//current state = s_0
+		for(int k= 0; k < MAX; k++){
+			//t = temperature(k/k_MAX)
+			//pick a random neighbor]
+			neighbor = generateNeighbor();
+			//if p(E(s), E(s_new), T) > rand(0,1)
+			int energy1 = check.runAll(semesters);
+			int energy2 = check.runAll(neighbor);
+			//stop at a threshold for temperature
+			if(energy2 > energy1)//if new state is better
+				semesters = neighbor;//state = neighbor
+			else if(boltzmann(energy1, energy2, TEMP) > Math.random())
+				semesters = neighbor;//state = neighbor
+			TEMP *= 0.99;
+			System.out.println(TEMP);
+		}
+	}
+	
+	private double boltzmann(int energy1, int energy2, double tmp){
+		double k = 1.3806*Math.pow(10, -23);
+		return Math.exp((energy2-energy1)/(k*tmp));
 	}
 }
