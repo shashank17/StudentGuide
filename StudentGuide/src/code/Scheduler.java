@@ -117,14 +117,14 @@ public class Scheduler {
 			}
 		}
 		// randomly choose two semester and exchange 2 courses from those semesters
-		int rand1 = (int) (Math.random()*copy.size());
+		int rand1 = (int) (Math.random()*(copy.size()-1));
 		int rand2 = rand1;
 		while(rand1 == rand2)
-			rand2 = (int) (Math.random()*copy.size());
+			rand2 = (int) (Math.random()*(copy.size()-1));
 		Semester semester1 =  copy.get(rand1);
 		Semester semester2 = copy.get(rand2);
-		rand1 = (int)(Math.random()*semester1.getCourses().size());
-		rand2 = (int)(Math.random()*semester2.getCourses().size());
+		rand1 = (int)(Math.random()*(semester1.getCourses().size()-1));
+		rand2 = (int)(Math.random()*(semester2.getCourses().size()-1));
 		Course course1 = semester1.removeCourse(rand1);
 		Course course2 = semester2.removeCourse(rand2);
 		
