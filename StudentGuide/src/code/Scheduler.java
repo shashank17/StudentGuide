@@ -77,25 +77,6 @@ public class Scheduler {
 		return courses;
 	}
 	
-//	public ArrayList<String> getCommonCourses(ArrayList<String> requirementCourseIds, ArrayList<String> selectedCourseIds){
-//		ArrayList<String> courseIds = new ArrayList<String>();
-//		for(String courseId : selectedCourseIds){
-//			if(requirementCourseIds.contains(courseId))
-//				courseIds.add(courseId);
-//		}
-//		return courseIds;
-//	}
-	
-//	public ArrayList<String> getAllCourseIds(){
-//		ArrayList<String> courseIds = new ArrayList<String>();
-//		for(Semester semester: semesters){
-//			for(Course course: semester.getCourses())
-//				courseIds.add(course.getCourseId());
-//		}
-//		return courseIds;
-//	}
-	
-	
 	private Course getCourseById(String id){
 		for(Course course:courses){
 			if(course.getCourseId().equals(id))
