@@ -152,7 +152,7 @@ public class Scheduler {
 		//pseudocode
 		//current state = s_0
 		int energy1 = check.runAll(semesters);
-		if (energy1==check.getConstraintsTotal()){
+		if (!(energy1==check.getConstraintsTotal())){
 			for(int k= 0; k < MAX; k++){
 				//t = temperature(k/k_MAX)
 				//pick a random neighbor]
