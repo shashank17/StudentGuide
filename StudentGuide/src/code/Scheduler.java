@@ -152,20 +152,26 @@ public class Scheduler {
 		// calculate the score of the neighbor, reject or accept based on the score
 		//pseudocode
 		//current state = s_0
+		int energy1 = check.runAll(semesters);
 		for(int k= 0; k < MAX; k++){
 			//t = temperature(k/k_MAX)
 			//pick a random neighbor]
 			neighbor = generateNeighbor();
 			//if p(E(s), E(s_new), T) > rand(0,1)
-			int energy1 = check.runAll(semesters);
 			int energy2 = check.runAll(neighbor);
 			//stop at a threshold for temperature
-			if(energy2 > energy1)//if new state is better
+			if(energy2 > energy1){//if new state is better
 				semesters = neighbor;//state = neighbor
-			else if(boltzmann(energy1, energy2, TEMP) > Math.random())
+				energy1 = energy2;
+			}
+			else if(boltzmann(energy1, energy2, TEMP) > Math.random()){
 				semesters = neighbor;//state = neighbor
+				energy1 = energy2;
+			}
 			TEMP *= 0.99;
-			System.out.println("Energy 1: "+ energy1 + " Energy 2: " + energy2 + " Temp: " + TEMP);
+			System.out.println(TEMP);
+			//if(TEMP < 0.5)
+				//break;
 		}
 	}
 	
