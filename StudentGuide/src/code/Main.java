@@ -8,7 +8,9 @@ public class Main {
 		ArrayList<Requirement> requirements= getRequirements();
 		ArrayList<Course> courses = getCourses();
 		Scheduler scheduler = new Scheduler(courses,requirements);
+		double start = System.currentTimeMillis();
 		ArrayList<Semester> semesters = scheduler.getSchedule();
+		double stop = System.currentTimeMillis();
 		for(int i=0;i<semesters.size();i++){
 			System.out.println("***** Semester "+(i+1)+" *****");
 			Semester s = semesters.get(i);
@@ -19,6 +21,7 @@ public class Main {
 			}
 			System.out.println("Total credits "+s.getTotalCredits());
 			System.out.println("================");
+			System.out.println("Execution time: "+ (stop-start) + " ms.");
 		}
 //		int sum = 0;
 //		for(Course course:courses){
