@@ -108,20 +108,9 @@ public class Scheduler {
 		rand2 = (int)(Math.random()*(semester2.getCourses().size()-1));
 		Course course1 = semester1.removeCourse(rand1);
 		Course course2 = semester2.removeCourse(rand2);
-		
-		// randomly add courses to semester1 or semester 2 or exchange courses
-		int rand = (int)(Math.random()*2);
-		
-		//if(rand == 0){
-			//semester1.addCourse(course1);
-			//semester1.addCourse(course2);
-		//}else if(rand == 1){
-			//semester2.addCourse(course1);
-			//semester2.addCourse(course2);
-		//}else{
-			semester2.addCourse(course1);
-			semester1.addCourse(course2);
-		//}
+
+		semester2.addCourse(course1);
+		semester1.addCourse(course2);
 		return copy;
 	}
 	
@@ -155,8 +144,6 @@ public class Scheduler {
 				}
 				TEMP *= 0.99;
 				System.out.println(TEMP);
-				//if(TEMP < 0.5)
-					//break;
 			}
 		}
 	}

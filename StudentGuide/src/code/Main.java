@@ -83,7 +83,9 @@ public class Main {
 		courses.add(new Course("PH_TIER3_INTEG",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 		
 		//general elective
-		courses.add(new Course("PH_Elective",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_Elective_1",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_Elective_2",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
+		courses.add(new Course("PH_Elective_3",3,OfferedSemester.EVERY_SEMESTER,new ArrayList<String>(),new ArrayList<String>()));
 
 		return courses;
 	}
@@ -232,6 +234,14 @@ public class Main {
 						0, 
 						new ArrayList<String>(Arrays.asList("PH_MAJOR_ELECT3_1","PH_MAJOR_ELECT3_2")))
 				);
+		requirements.add(
+				new Requirement(ReqType.ELECTIVE, 
+						3, 
+						0, 
+						new ArrayList<String>(Arrays.asList("PH_Elective_1","PH_Elective_2","PH_Elective_3")))
+				);
+		
+		
 		
 		
 		return requirements;
