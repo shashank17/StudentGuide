@@ -40,7 +40,7 @@ public class ConstraintChecker {
 	public void semesterHours(ArrayList<Semester> semester){
 		for(Semester s:semester){
 			this.constraintsTotal++; //one constraint per semester
-			if(s.getTotalCredits() > 19 || s.getTotalCredits() < 12)
+			if(s.getTotalCredits() <= 19 && s.getTotalCredits() >= 12)
 				this.constraintsFullfilled++;	
 		}
 	}
@@ -57,9 +57,9 @@ public class ConstraintChecker {
 	//Req GENED_TIER1_LST - first semester
 	public void firstSemester(Semester semester){
 		this.constraintsTotal = constraintsTotal + 2; //two constraints for this method
-		if(!semester.containsClass("LST_101"))
+		if(semester.containsClass("LST_101"))
 			this.constraintsFullfilled++;
-		if (!semester.containsClass("WSM_101")) //don't use else if - each requirement is separate
+		if(semester.containsClass("WSM_101")) //don't use else if - each requirement is separate
 			this.constraintsFullfilled++;
 	}
 	//Req GENED_TIER1_MAT - first or second semester

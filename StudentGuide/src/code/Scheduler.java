@@ -146,7 +146,7 @@ public class Scheduler {
 			else if(boltzmann(energy1, energy2, TEMP) > Math.random())
 				semesters = neighbor;//state = neighbor
 			TEMP *= 0.99;
-			System.out.println(TEMP);
+			System.out.println("Energy 1: "+ energy1 + " Energy 2: " + energy2 + " Temp: " + TEMP);
 		}
 	}
 	
