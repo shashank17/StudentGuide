@@ -9,7 +9,7 @@ public class Scheduler {
 	private ArrayList<Semester> semesters;
 	private ArrayList<Requirement> requirements;
 	private ArrayList<Course> courses;
-	private int MAX = 1000;
+	private int MAX = 2000;
 	private double TEMP = 500;
 	
 	public Scheduler(ArrayList<Course> courses, ArrayList<Requirement> requirements){
@@ -58,7 +58,7 @@ public class Scheduler {
 					
 					for(int j= 0;j<r.getReqCourseCount() - commonCourses.size();j++ ){
 						Course course = getCourseById(difference.get(j));
-						if(semester.getTotalCredits()+course.getCredits() > 19){
+						if(semester.getTotalCredits() > 14 && semesters.size()<7){
 							semesters.add(semester);
 							semester = new Semester();
 						}
@@ -129,6 +129,7 @@ public class Scheduler {
 				neighbor = generateNeighbor();
 				//if p(E(s), E(s_new), T) > rand(0,1)
 				int energy2 = check.runAll(neighbor);
+				int totalConstraints = check.getConstraintsTotal();
 				if (energy2==check.getConstraintsTotal()) {
 					semesters = neighbor;//state = neighbor
 					break;
@@ -137,19 +138,24 @@ public class Scheduler {
 				if(energy2 > energy1){//if new state is better
 					semesters = neighbor;//state = neighbor
 					energy1 = energy2;
+//					System.out.println((totalConstraints - energy2)*100/totalConstraints + "    "+TEMP);
 				}
 				else if(boltzmann(energy1, energy2, TEMP) > Math.random()){
 					semesters = neighbor;//state = neighbor
 					energy1 = energy2;
+//					System.out.println((totalConstraints - energy2)*100.0/totalConstraints + "    "+TEMP);
 				}
 				TEMP *= 0.99;
-				System.out.println(TEMP);
+//				System.out.println(TEMP);
 			}
+			System.out.println(check.runAll(semesters));
+			System.out.println(check.getConstraintsTotal());
+			
 		}
 	}
 	
 	private double boltzmann(int energy1, int energy2, double tmp){
-		double k = 1.3806*Math.pow(10, -23);
-		return Math.exp((energy2-energy1)/(k*tmp));
+//		double k = 1.3806*Math.pow(10, -23);
+		return Math.exp((energy2-energy1)/(tmp));
 	}
 }

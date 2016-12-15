@@ -21,13 +21,15 @@ public class Main {
 			}
 			System.out.println("Total credits "+s.getTotalCredits());
 			System.out.println("================");
-			System.out.println("Execution time: "+ (stop-start) + " ms.");
+//			
 		}
-//		int sum = 0;
-//		for(Course course:courses){
-//			sum = sum+course.getCredits();
-//		}
-//		System.out.println("Total credits:"+sum);
+		
+		int sum = 0;
+		for(Course course:courses){
+			sum = sum+course.getCredits();
+		}
+		System.out.println("Total credits:"+sum);
+		System.out.println("Execution time: "+ (stop-start) + " ms.");
 	}
 	
 	private static ArrayList<Course> getCourses() {
